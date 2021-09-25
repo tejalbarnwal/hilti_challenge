@@ -1,0 +1,103 @@
+%YAML:1.0
+## MADE FROM TUM_512.YAML
+#--------------------------------------------------------------------------------------------
+# Camera Parameters. Adjust them!
+#--------------------------------------------------------------------------------------------
+Camera.type: "KannalaBrandt8"
+# Camera calibration and distortion parameters (OpenCV)
+
+# TEJU USING CAM0!
+#---------------------------
+
+### CAM2-----
+Camera.fx: 702.3538912351 # 190.97847715128717
+Camera.fy: 702.1759854802 # 190.9733070521226
+Camera.cx: 718.7749348353 # 254.93170605935475
+Camera.cy: 535.2856167618 # 256.8974428996504
+
+# Equidistant distortion 0.0034823894022493434, 0.0007150348452162257, -0.0020532361418706202, 0.00020293673591811182
+#Camera.bFishEye: 1
+Camera.k1: -0.0392852639 # 0.0034823894022493434
+Camera.k2: -0.0023244164 # 0.0007150348452162257
+Camera.k3: -0.0005553017 # -0.0020532361418706202
+Camera.k4: 0.0002238156 # 0.00020293673591811182
+#-------------
+
+# Camera resolution
+Camera.width: 1440
+Camera.height: 1080
+
+# Camera frames per second 
+Camera.fps: 10.0
+
+# Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+Camera.RGB: 1
+
+# Transformation from body-frame (imu) to camera
+Tbc: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: f
+   # data: [-0.9995250378696743, 0.0075019185074052044, -0.02989013031643309, 0.045574835649698026, 
+   #        0.029615343885863205, -0.03439736061393144, -0.998969345370175, -0.071161801837997044,
+   #       -0.008522328211654736, -0.9993800792498829, 0.03415885127385616, -0.044681254117144367,
+   #        0.0, 0.0, 0.0, 1.0]
+   # CAM 2
+   data: [0.999945261710955, 0.002025872900905, -0.010264960827931, 0.0066556070130705325,
+         0.002100081712483, -0.999971703377351, 0.007223717976293, -0.007297504322474243,
+         -0.010250036029716, -0.007244879818845, -0.999921221135846, -0.035615803708099754,
+         0.0, 0.0, 0.0, 1.000000000000000]
+
+# Tbc: !!opencv-matrix  # from vins mono calibration file
+#   rows: 4
+#   cols: 4
+#   dt: f
+#   data: [-0.9995250378696743, 0.0075842033363785165, -0.030214670573904204, 0.044511917113940799, 
+#          0.029940114644659861, -0.034023430206013172, -0.99897246995704592, -0.073197096234105752,
+#         -0.0086044170750674241, -0.99939225835343004, 0.033779845322755464, -0.047972907300764499,
+#          0.0, 0.0, 0.0, 1.0]
+
+
+# IMU noise (Use those from VINS-mono)
+IMU.NoiseGyro: 7.0761800772856065e-01 #3.5201339549872799e+00 # rad/s^0.5 
+IMU.NoiseAcc: 9.7210681850765923e-01 #1.3610075391784484e+01 # m/s^1.5
+IMU.GyroWalk: 2.2329919572312445e-03 #4.8477797168896648e-03 # rad/s^1.5
+IMU.AccWalk: 5.9386704381965784e-02 #9.2739556668357925e-01 # m/s^2.5
+IMU.Frequency: 200
+
+
+#--------------------------------------------------------------------------------------------
+# ORB Parameters
+#--------------------------------------------------------------------------------------------
+
+# ORB Extractor: Number of features per image
+ORBextractor.nFeatures: 1500 # Tested with 1250
+
+# ORB Extractor: Scale factor between levels in the scale pyramid   
+ORBextractor.scaleFactor: 1.5
+
+# ORB Extractor: Number of levels in the scale pyramid  
+ORBextractor.nLevels: 8
+
+# ORB Extractor: Fast threshold
+# Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
+# Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
+# You can lower these values if your images have low contrast     
+# ORBextractor.iniThFAST: 20
+# ORBextractor.minThFAST: 7
+ORBextractor.iniThFAST: 20 # 20
+ORBextractor.minThFAST: 7 # 7
+
+#--------------------------------------------------------------------------------------------
+# Viewer Parameters
+#--------------------------------------------------------------------------------------------
+Viewer.KeyFrameSize: 0.05
+Viewer.KeyFrameLineWidth: 1
+Viewer.GraphLineWidth: 0.9
+Viewer.PointSize: 2
+Viewer.CameraSize: 0.08
+Viewer.CameraLineWidth: 3
+Viewer.ViewpointX: 0
+Viewer.ViewpointY: -0.7
+Viewer.ViewpointZ: -3.5 # -1.8
+Viewer.ViewpointF: 500
